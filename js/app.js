@@ -63,8 +63,7 @@ function initializeGame(){
 function incrementMove(){
 	numberOfMoves ++;
 	updateMovesCount();
-	if (numberOfMoves === 16 || numberOfMoves === 24){
-		//reduceStar();
+	if (numberOfMoves === 8 || numberOfMoves === 16){
 		removeAStar();
 	}
 }
@@ -102,7 +101,6 @@ function createBoard(){
 
 // Handles when a card is clicked
 function cardClickHandler(event){
-	incrementMove();
 	// check opened or matched card
 	let classes = $(this).attr("class");
 	if (classes.search('open') * classes.search('match') !== 1){
@@ -125,6 +123,7 @@ function cardClickHandler(event){
 
 // This function checks for match when openCards array has 2 elements
 function checkForMatch(){
+	incrementMove();
 	if ((openCards[0])[0].firstChild.className === (openCards[1])[0].firstChild.className){
 		matchedCount ++;
 		openCards.forEach((card)=>{
